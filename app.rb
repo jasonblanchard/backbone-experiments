@@ -21,3 +21,7 @@ end
 get '/todo' do
     erb :todo
 end
+
+get '/app' do
+    erb :app
+end
