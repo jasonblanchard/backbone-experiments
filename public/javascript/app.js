@@ -2,8 +2,8 @@ $(document).ready(function() {
 
     var Todo = Backbone.Model.extend({
         initialize: function() {
-            console.log('The model has been initialized');
-            console.log(JSON.stringify(this));
+            // console.log('The model has been initialized');
+            // console.log(JSON.stringify(this));
 
             this.on('change:title', function() {
                 console.log('The title has changed.');
@@ -18,6 +18,8 @@ $(document).ready(function() {
             title: '',
             completed: false
         },
+
+        idAttribute: "_id",
     
         validate: function(attrs) {
             if (!attrs.title) {
@@ -68,26 +70,35 @@ $(document).ready(function() {
     
     var TodosCollection = Backbone.Collection.extend({
         model: Todo,
+        url: '/app/todos',
 
         initialize: function() {
             this.on("add", function(todo) {
-                console.log("I should " + todo.get('title'));
+                // console.log("I should " + todo.get('title'));
             });
 
             this.on('change', function(todo) {
-                console.log("Actually, I should " + todo.get('title'));
+                // console.log("Actually, I should " + todo.get('title'));
             });
         },
 
     });
 
-    todo = new Todo({title: 'walk dog'});
-    todoId = todo.cid;
+    // todo = new Todo({title: 'walk dog'});
+    //  todoId = todo.cid;
 
     todos = new TodosCollection();
+    todos.fetch();
 
-    todos.add(todo);
-    todo.set('title', 'watch TV');
+    console.log(todos);
+    // todo = todos.get("51d1cd891e73b50dd2000001");
+    todo = todos.at(0);
+    console.log(todo);
+
+    // todos.add(todo);
+    // todo.set('title', 'watch TV');
+    // newTodo = new Todo({title: 'Learn Backbon'});
+    // todos.create({title: 'figure out IDs'});
 
 });
 
