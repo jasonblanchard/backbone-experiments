@@ -1,9 +1,18 @@
 require 'sinatra'
 require 'mongoid'
+require 'json'
 
 Mongoid.load!("config/mongoid.yml")
 
 enable :sessions
+
+class Todo
+    include Mongoid::Document
+    include Mongoid::Timestamps
+
+    field :title
+    field :completed, :type => Boolean, :default => false
+end
 
 get '/hi' do
    @text ="hello, world"
@@ -23,5 +32,11 @@ get '/todo' do
 end
 
 get '/app' do
+    @todos = Todo.all.to_a
     erb :app
+end
+
+post '/app/todo' do
+    #todo = JSON.parse(request.body.read.to_s)
+    p request.body.class
 end

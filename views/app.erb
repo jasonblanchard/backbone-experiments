@@ -10,3 +10,9 @@ New app
     {{ title }}
 </div>
 </script>
+
+<ul>
+    <% @todos.each do |todo| %>
+        <li><%= todo.title %></li>
+    <% end %>
+</ul>
