@@ -37,6 +37,6 @@ get '/app' do
 end
 
 post '/app/todo' do
-    #todo = JSON.parse(request.body.read.to_s)
-    p request.body.class
+    todo = JSON.parse(request.body.read.to_s)
+    Todo.create(todo)
 end
