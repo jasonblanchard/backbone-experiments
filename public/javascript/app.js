@@ -92,8 +92,6 @@ $(document).ready(function() {
 
     console.log(todos);
     // todo = todos.get("51d1cd891e73b50dd2000001");
-    todo = todos.at(0);
-    console.log(todo);
 
     // todos.add(todo);
     // todo.set('title', 'watch TV');
